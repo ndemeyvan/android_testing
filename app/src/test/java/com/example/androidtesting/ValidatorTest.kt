@@ -19,6 +19,7 @@ class ValidatorTest {
         val result =  Validator.validateInput(amount,desc)
         assertThat(result).isEqualTo(true)
     }
+
     @Test
     fun whenInputInValid(){
         val amount = 0

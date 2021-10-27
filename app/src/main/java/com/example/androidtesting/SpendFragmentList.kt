@@ -1,6 +1,8 @@
 package com.example.androidtesting
 
 import android.os.Bundle
+import android.util.Log
+import android.util.Log.INFO
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +20,7 @@ import com.example.androidtesting.Repository.SpendRepository
 import com.example.androidtesting.ViewModel.SpendViewModel
 import com.example.androidtesting.ViewModel.SpendViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.util.logging.Level.INFO
 
 
 class SpendFragmentList : Fragment() {
@@ -40,7 +43,7 @@ class SpendFragmentList : Fragment() {
         rvSpend = view.findViewById(R.id.rvSpend)
         tvEmptrySpend = view.findViewById(R.id.tvEmptrySpend)
         fvAddSpend = view.findViewById(R.id.fvAddSpend)
-
+        activity?.actionBar?.hide()
         val context = view.context;
         val database = SpendDataBase(context)
         val repository = SpendRepository(database)
@@ -48,12 +51,20 @@ class SpendFragmentList : Fragment() {
         //Quand on utilise la delegation ,
         // pour passer une valeur au factory , on l efait comme ici bas
         val spendViewModel: SpendViewModel by activityViewModels() { factory }
-        setupRecyclerView(emptyList(),spendViewModel)
-        spendViewModel.getAllShoppingItem().observe(this, Observer { spendList->
-                if(spendList.size==0){
+        var adapter = SpendAdapter(listOf(), spendViewModel)
+
+        rvSpend.layoutManager = LinearLayoutManager(context)
+        rvSpend.adapter = adapter
+        spendViewModel.getAllSpendItem().observe(this, Observer { spendList->
+            Log.i("LIST", spendList.size.toString())
+            Log.i("LIST", spendList.toString())
+                if(spendList.isEmpty()){
                     tvEmptrySpend.visibility = View.VISIBLE
+                    rvSpend.visibility = View.INVISIBLE
                 }else{
                     tvEmptrySpend.visibility = View.INVISIBLE
+                    adapter.spendList=spendList
+                    adapter.notifyDataSetChanged()
                 }
         })
 
@@ -65,12 +76,6 @@ class SpendFragmentList : Fragment() {
         return view
     }
 
-    fun setupRecyclerView(spendList: List<Spend>, spendViewModel: SpendViewModel){
-        var adapter = SpendAdapter(spendList, spendViewModel)
-        rvSpend.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = adapter
-        }
-    }
+
 
 }

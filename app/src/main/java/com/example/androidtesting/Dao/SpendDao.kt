@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.androidtesting.Entities.Spend
 
+@Dao
 interface SpendDao {
 
 
@@ -16,6 +17,9 @@ interface SpendDao {
     //Query Permet d'ecrire soit meme ses propre requete SQL
     @Query("SELECT * FROM spend_table")
     fun getAllSpendItems(): LiveData<List<Spend>>
+
+    @Query("SELECT * FROM spend_table")
+    fun getAllSpendItemsForTest(): List<Spend>
 
 
 

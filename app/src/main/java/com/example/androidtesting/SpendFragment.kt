@@ -47,13 +47,21 @@ class SpendFragment : Fragment() {
         val spendViewModel: SpendViewModel by activityViewModels() { factory }
 
         btSpend.setOnClickListener {
-            if (!(etAmount.text.toString().toInt() <= 0 || etDescription.text.isEmpty())) {
+            if(etAmount.text.isEmpty()){
                 makeToast(context, "Please fill the form correctly")
-            } else {
-                var spend = Spend(etAmount.text.toString().toInt(), etDescription.text.toString())
-                spendViewModel.insertSpendItem(spend)
-                makeToast(context, "Spend added successfuly")
+            }else{
+                if ((etAmount.text.toString().toInt() <= 0 || etDescription.text.isEmpty())) {
+                    makeToast(context, "Please fill the form correctly")
+                } else {
+                    var spend = Spend(etAmount.text.toString().toInt(), etDescription.text.toString())
+                    spendViewModel.insertSpendItem(spend)
+                    etAmount.setText("")
+                    etDescription.setText("")
+                    makeToast(context, "Spend added successfuly")
+
+                }
             }
+
         }
         return view
     }

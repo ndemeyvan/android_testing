@@ -9,7 +9,7 @@ import com.example.androidtesting.Entities.Spend
 
 @Database(
     entities = [Spend::class],
-    version = 1
+    version = 2
 )
 abstract  class SpendDataBase: RoomDatabase() {
 

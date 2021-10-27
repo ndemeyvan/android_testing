@@ -9,8 +9,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSpend"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -21,8 +21,7 @@
         android:id="@+id/tvEmptrySpend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcom , You don't have spend for the moment"
-        android:visibility="invisible"
+        android:text="Welcome , You don't have spend for the moment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/rvSpend"
         app:layout_constraintStart_toStartOf="@+id/rvSpend"
