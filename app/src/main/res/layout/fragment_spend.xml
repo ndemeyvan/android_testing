@@ -58,4 +58,16 @@
         app:layout_constraintStart_toStartOf="@+id/etDescription"
         app:layout_constraintTop_toBottomOf="@+id/etDescription"
         tools:text="Add Spend" />
+
+    <TextView
+        android:id="@+id/tvAddSpendStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="New spend add Successfully"
+        android:textColor="@color/teal_200"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/btSpend"
+        app:layout_constraintStart_toStartOf="@+id/btSpend"
+        app:layout_constraintTop_toBottomOf="@+id/btSpend" />
 </androidx.constraintlayout.widget.ConstraintLayout>

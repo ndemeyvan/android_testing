@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import com.example.androidtesting.Database.SpendDataBase
 import com.example.androidtesting.Entities.Spend
@@ -22,6 +24,7 @@ class SpendFragment : Fragment() {
     lateinit var etAmount: EditText
     lateinit var etDescription: EditText
     lateinit var btSpend: Button
+    lateinit var tvAddSpendStatus:TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +41,7 @@ class SpendFragment : Fragment() {
         btSpend = view.findViewById(R.id.btSpend)
         etDescription = view.findViewById(R.id.etDescription)
         etAmount = view.findViewById(R.id.etAmount)
+        tvAddSpendStatus = view.findViewById(R.id.tvAddSpendStatus)
         val context = view.context;
         val database = SpendDataBase(context)
         val repository = SpendRepository(database)
@@ -45,6 +49,10 @@ class SpendFragment : Fragment() {
         //Quand on utilise la delegation ,
         // pour passer une valeur au factory , on l efait comme ici bas
         val spendViewModel: SpendViewModel by activityViewModels() { factory }
+
+        etDescription.addTextChangedListener {
+            tvAddSpendStatus.visibility = View.INVISIBLE
+        }
 
         btSpend.setOnClickListener {
             if(etAmount.text.isEmpty()){
@@ -58,6 +66,7 @@ class SpendFragment : Fragment() {
                     etAmount.setText("")
                     etDescription.setText("")
                     makeToast(context, "Spend added successfuly")
+                    tvAddSpendStatus.visibility = View.VISIBLE
 
                 }
             }
