@@ -9,7 +9,7 @@ import com.example.androidtesting.Entities.Spend
 
 @Database(
     entities = [Spend::class],
-    version = 2
+    version = 1
 )
 abstract  class SpendDataBase: RoomDatabase() {
 
@@ -30,6 +30,6 @@ abstract  class SpendDataBase: RoomDatabase() {
 
         private fun createDatabase(context: Context) =
             Room.databaseBuilder(context.applicationContext,
-                SpendDataBase::class.java, "spend_db.db").build()
+                SpendDataBase::class.java, "spend.db").build()
     }
 }

@@ -1,8 +1,6 @@
 package com.example.androidtesting
 
 import android.os.Bundle
-import android.util.Log
-import android.util.Log.INFO
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,12 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidtesting.Adapter.SpendAdapter
 import com.example.androidtesting.Database.SpendDataBase
-import com.example.androidtesting.Entities.Spend
 import com.example.androidtesting.Repository.SpendRepository
 import com.example.androidtesting.ViewModel.SpendViewModel
 import com.example.androidtesting.ViewModel.SpendViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.util.logging.Level.INFO
 
 
 class SpendFragmentList : Fragment() {
@@ -56,8 +52,6 @@ class SpendFragmentList : Fragment() {
         rvSpend.layoutManager = LinearLayoutManager(context)
         rvSpend.adapter = adapter
         spendViewModel.getAllSpendItem().observe(this, Observer { spendList->
-            Log.i("LIST", spendList.size.toString())
-            Log.i("LIST", spendList.toString())
                 if(spendList.isEmpty()){
                     tvEmptrySpend.visibility = View.VISIBLE
                     rvSpend.visibility = View.INVISIBLE

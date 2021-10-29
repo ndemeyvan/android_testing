@@ -21,21 +21,16 @@ import org.junit.Test
 class SpendFragmentTest{
 
 //    ///Declarer un scenario
-//    private lateinit var scenario : FragmentScenario<SpendFragment>
-//
-////    @Before
-//     fun setUp() {
-//        scenario = launchFragmentInContainer(themeResId = R.style.Theme_AndroidTesting)
-////        scenario.moveToState(Lifecycle.State.STARTED)
-//    }
+    private lateinit var scenario : FragmentScenario<SpendFragment>
+
+    @Before
+     fun setUp() {
+        scenario = launchFragmentInContainer(themeResId = R.style.Theme_AndroidTesting)
+      scenario.moveToState(Lifecycle.State.STARTED)
+    }
 
     @Test
     fun testAddingSpend() {
-        val scenario = launchFragmentInContainer<SpendFragment>(
-            initialState = Lifecycle.State.INITIALIZED
-        )
-        scenario.moveToState(Lifecycle.State.RESUMED)
-
         val amount = 100
         val desc = "Bought Eggs"
         //Espresso Matcher and Action

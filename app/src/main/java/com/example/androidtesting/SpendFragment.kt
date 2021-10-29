@@ -2,6 +2,7 @@ package com.example.androidtesting
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.androidtesting.Database.SpendDataBase
 import com.example.androidtesting.Entities.Spend
 import com.example.androidtesting.Repository.SpendRepository
@@ -61,12 +63,13 @@ class SpendFragment : Fragment() {
                 if ((etAmount.text.toString().toInt() <= 0 || etDescription.text.isEmpty())) {
                     makeToast(context, "Please fill the form correctly")
                 } else {
+                    tvAddSpendStatus.visibility = View.VISIBLE
                     var spend = Spend(etAmount.text.toString().toInt(), etDescription.text.toString())
                     spendViewModel.insertSpendItem(spend)
                     etAmount.setText("")
                     etDescription.setText("")
                     makeToast(context, "Spend added successfuly")
-                    tvAddSpendStatus.visibility = View.VISIBLE
+                    findNavController().navigateUp()
 
                 }
             }
